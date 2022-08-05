@@ -41,6 +41,22 @@ void main() {
       ownerId: faker.guid.guid(),
       title: faker.lorem.word(),
     );
+
+    final ownerId = faker.guid.guid();
+    final communityId = faker.guid.guid();
+    final output = CreateCommunityOutput(
+      id: communityId,
+      title: faker.lorem.word(),
+      description: faker.lorem.words(5).toString(),
+      ownerId: ownerId,
+      members: [
+        {
+          "id": ownerId,
+          "role": "admin",
+          "community_id": communityId,
+        }
+      ],
+    );
     setUp(() {
       idService = MockIdService();
       createCommunityRepository = MockCommunityRepository();
@@ -112,7 +128,11 @@ void main() {
 
     test("Should return right when repository does so", () async {
       mockIdGeneration(faker.guid.guid());
-      mockCreateCommunity(Right(CreateCommunityOutput()));
+      mockCreateCommunity(
+        Right(
+          output,
+        ),
+      );
 
       final result = await sut(
         validInput,
@@ -131,6 +151,40 @@ void main() {
           any(),
         ),
       ).called(1);
+    });
+
+    test(
+        "Should contains at least one member when creating a community, which needs to be the owner",
+        () async {
+      mockIdGeneration(faker.guid.guid());
+      mockCreateCommunity(
+        Right(
+          output,
+        ),
+      );
+
+      final result = await sut(
+        validInput,
+      );
+
+      expect(
+        result.isRight(),
+        isTrue,
+      );
+      result.fold((l) => null, (r) {
+        expect(
+          r,
+          isA<CreateCommunityOutput>(),
+        );
+        expect(
+          r.members.isNotEmpty,
+          isTrue,
+        );
+        expect(
+          r.members.first["id"],
+          equals(r.ownerId),
+        );
+      });
     });
   });
 }

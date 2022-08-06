@@ -89,6 +89,16 @@ void main() {
       );
     }
 
+    void mockDelete(Either<Exception, DeleteCommunityOutput> value) {
+      when(
+        (() => deleteCommunityRepository.delete(
+              any(),
+            )),
+      ).thenAnswer(
+        (invocation) async => value,
+      );
+    }
+
     test("Should return left if find does so", () async {
       mockFind(
         Left(
@@ -134,6 +144,25 @@ void main() {
 
       expect(result.isLeft(), isTrue);
       expect(result.fold((l) => l, (r) => null), isA<DomainException>());
+    });
+
+    test("Should return left if delete repo does so", () async {
+      mockFind(
+        Right(output),
+      );
+      mockDelete(
+        Left(
+          Exception(),
+        ),
+      );
+
+      final result = await sut(
+        DeleteCommunityInput(
+          id: input.id,
+        ),
+      );
+
+      expect(result.isLeft(), isTrue);
     });
   });
 }

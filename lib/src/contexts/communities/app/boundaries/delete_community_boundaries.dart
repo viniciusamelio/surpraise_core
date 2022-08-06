@@ -6,8 +6,7 @@ class DeleteCommunityInput {
 }
 
 class DeleteCommunityOutput {
-  DeleteCommunityOutput({
-    required this.message,
-  });
+  DeleteCommunityOutput({required String communityId})
+      : message = "Community $communityId deleted";
   final String message;
 }

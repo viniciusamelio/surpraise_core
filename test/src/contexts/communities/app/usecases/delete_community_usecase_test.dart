@@ -164,5 +164,30 @@ void main() {
 
       expect(result.isLeft(), isTrue);
     });
+
+    test("Should return right when everything goes ok", () async {
+      mockFind(
+        Right(output),
+      );
+      mockDelete(
+        Right(
+          DeleteCommunityOutput(communityId: input.id),
+        ),
+      );
+
+      final result = await sut(
+        DeleteCommunityInput(
+          id: input.id,
+        ),
+      );
+
+      expect(result.isRight(), isTrue);
+      result.fold((l) => null, (r) {
+        expect(
+          r.message,
+          equals("Community ${input.id} deleted"),
+        );
+      });
+    });
   });
 }

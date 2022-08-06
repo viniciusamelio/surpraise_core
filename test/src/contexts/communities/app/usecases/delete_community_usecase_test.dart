@@ -104,5 +104,36 @@ void main() {
 
       expect(result.isLeft(), isTrue);
     });
+
+    test("Should return left if community has more than one member", () async {
+      mockFind(
+        Right(
+          output
+            ..members.addAll(
+              [
+                FindCommunityMemberDto(
+                  id: faker.guid.guid(),
+                  communityId: output.id,
+                  role: "admin",
+                ),
+                FindCommunityMemberDto(
+                  id: faker.guid.guid(),
+                  communityId: output.id,
+                  role: "user",
+                ),
+              ],
+            ),
+        ),
+      );
+
+      final result = await sut(
+        DeleteCommunityInput(
+          id: input.id,
+        ),
+      );
+
+      expect(result.isLeft(), isTrue);
+      expect(result.fold((l) => l, (r) => null), isA<DomainException>());
+    });
   });
 }

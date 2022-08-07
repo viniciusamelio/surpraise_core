@@ -75,7 +75,9 @@ void main() {
         input,
       );
       registerFallbackValue(
-        DeleteCommunityInput(id: input.id),
+        DeleteCommunityInput(
+          id: input.id,
+        ),
       );
     });
 
@@ -165,13 +167,15 @@ void main() {
       expect(result.isLeft(), isTrue);
     });
 
-    test("Should return right when everything goes ok", () async {
+    test("SUT Should return right when everything goes ok", () async {
       mockFind(
-        Right(output),
+        Right(output..members.removeAt(1)),
       );
       mockDelete(
         Right(
-          DeleteCommunityOutput(communityId: input.id),
+          DeleteCommunityOutput(
+            communityId: output.id,
+          ),
         ),
       );
 
@@ -185,7 +189,7 @@ void main() {
       result.fold((l) => null, (r) {
         expect(
           r.message,
-          equals("Community ${input.id} deleted"),
+          equals("Community ${output.id} deleted"),
         );
       });
     });

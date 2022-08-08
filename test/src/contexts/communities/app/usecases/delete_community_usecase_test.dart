@@ -3,6 +3,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:surpraise_core/src/contexts/communities/app/boundaries/delete_community_boundaries.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:surpraise_core/src/contexts/communities/app/boundaries/find_community_boundaries.dart';
+import 'package:surpraise_core/src/contexts/communities/app/services/delete_community_service.dart';
 import 'package:surpraise_core/src/contexts/communities/app/usecases/delete_community_usecase.dart';
 import 'package:surpraise_core/src/contexts/communities/data/protocols/protocols.dart';
 import 'package:surpraise_core/src/contexts/communities/data/usecases/db_delete_community_usecase.dart';
@@ -33,6 +34,7 @@ void main() {
       sut = DbDeleteCommunityUsecase(
         deleteCommunityRepository: deleteCommunityRepository,
         findCommunityRepository: findCommunityRepository,
+        deleteCommunityService: DeleteCommunityService(),
       );
 
       registerFallbackValue(
@@ -95,7 +97,7 @@ void main() {
                 FindCommunityMemberDto(
                   id: faker.guid.guid(),
                   communityId: output.id,
-                  role: "user",
+                  role: "member",
                 ),
               ],
             ),

@@ -9,6 +9,9 @@ enum Role {
   const Role(this.value);
 
   final String value;
+
+  factory Role.fromString(String value) =>
+      values.firstWhere((element) => element.name == value);
 }
 
 class Member implements Entity {

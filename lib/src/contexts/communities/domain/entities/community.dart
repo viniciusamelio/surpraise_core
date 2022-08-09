@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'package:surpraise_core/src/contexts/communities/domain/entities/member.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/value_objects/description.dart';
 import 'package:surpraise_core/src/core/entities/base_entity.dart';
@@ -8,20 +10,22 @@ import '../value_objects/title.dart';
 
 class Community implements Entity {
   Community({
-    required this.id,
+    required Id id,
     required Id ownerId,
     required this.description,
     required this.title,
     required this.members,
-  }) : _ownerId = ownerId;
+  })  : _ownerId = ownerId,
+        _id = id;
 
-  final Id id;
+  Id _id;
   Id _ownerId;
   Title title;
   Description description;
   final List<Member> members;
 
   Id get ownerId => _ownerId;
+  Id get id => _id;
 
   void changeOwner(Id newOwnerId) {
     if (ownerId == newOwnerId) {

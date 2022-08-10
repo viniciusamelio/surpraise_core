@@ -37,7 +37,7 @@ class Community implements Entity {
   }
 
   void addMember(Member member, int planMemberLimit) {
-    if (members.length >= planMemberLimit) {
+    if (members.length > planMemberLimit) {
       throw DomainException(
         "Community member limit reached, upgrade your plan to add more members",
       );

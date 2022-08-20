@@ -12,10 +12,8 @@ enum TopicValues {
 
   final String value;
 
-  factory TopicValues.fromString(String value) => values.firstWhere(
-        (element) => element.name == value,
-        orElse: throw ValidationException("Invalid topic value"),
-      );
+  factory TopicValues.fromString(String value) =>
+      values.firstWhere((element) => "#${element.name}" == value);
 }
 
 class Topic extends Equatable implements ValueObject<String> {

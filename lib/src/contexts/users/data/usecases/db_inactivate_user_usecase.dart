@@ -2,9 +2,12 @@ import 'package:fpdart/fpdart.dart';
 import 'package:surpraise_core/src/contexts/users/app/boundaries/inactivate_user_boundaries.dart';
 import 'package:surpraise_core/src/contexts/users/app/usecases/inactivate_user_usecase.dart';
 import 'package:surpraise_core/src/contexts/users/data/protocols/inactivate_user_repository.dart';
+import 'package:surpraise_core/src/contexts/users/domain/events/events.dart';
+import 'package:surpraise_core/src/core/usecases/base_event_usecase.dart';
 import 'package:surpraise_core/src/core/value_objects/id.dart';
 
-class DbInactivateUserUsecase implements InactivateUserUsecase {
+class DbInactivateUserUsecase extends EventEmitterUsecase
+    implements InactivateUserUsecase {
   DbInactivateUserUsecase({
     required InactivateUserRepository inactivateUserRepository,
   }) : _inactivateUserRepository = inactivateUserRepository;
@@ -19,6 +22,9 @@ class DbInactivateUserUsecase implements InactivateUserUsecase {
       final inactivateUserMessageOrError =
           await _inactivateUserRepository.inactivate(
         input,
+      );
+      notify(
+        UserInactivated(input.id),
       );
       return inactivateUserMessageOrError;
     } on Exception catch (e) {

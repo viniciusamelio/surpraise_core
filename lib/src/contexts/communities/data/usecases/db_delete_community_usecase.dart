@@ -5,7 +5,7 @@ import 'package:surpraise_core/src/contexts/communities/domain/events/events.dar
 import 'package:surpraise_core/src/contexts/communities/domain/services/delete_community_service.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/value_objects/description.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/value_objects/title.dart';
-import 'package:surpraise_core/src/core/events/event_bus.dart';
+import 'package:surpraise_core/src/core/usecases/base_event_usecase.dart';
 import 'package:surpraise_core/src/core/value_objects/id.dart';
 
 import '../../app/boundaries/delete_community_boundaries.dart';
@@ -13,12 +13,12 @@ import '../../app/boundaries/find_community_boundaries.dart';
 import '../../app/usecases/delete_community_usecase.dart';
 import '../protocols/protocols.dart';
 
-class DbDeleteCommunityUsecase implements DeleteCommunityUsecase {
+class DbDeleteCommunityUsecase extends EventEmitterUsecase
+    implements DeleteCommunityUsecase {
   DbDeleteCommunityUsecase({
     required DeleteCommunityRepository deleteCommunityRepository,
     required FindCommunityRepository findCommunityRepository,
     required IDeleteCommunityService deleteCommunityService,
-    required this.eventBus,
   })  : _deleteCommunityRepository = deleteCommunityRepository,
         _findCommunityRepository = findCommunityRepository,
         _deleteCommunityService = deleteCommunityService;
@@ -58,7 +58,11 @@ class DbDeleteCommunityUsecase implements DeleteCommunityUsecase {
         return serviceResponse.fold((l) => Left(l), (r) async {
           final feedbackOrError =
               await _deleteCommunityRepository.delete(input);
-          _notify(input);
+          notify(
+            CommunityDeleted(
+              communityId: input.id,
+            ),
+          );
           return feedbackOrError;
         });
       });
@@ -66,15 +70,4 @@ class DbDeleteCommunityUsecase implements DeleteCommunityUsecase {
       return Left(e);
     }
   }
-
-  void _notify(DeleteCommunityInput input) {
-    eventBus.addEvent(
-      CommunityDeleted(
-        communityId: input.id,
-      ),
-    );
-  }
-
-  @override
-  final EventBus eventBus;
 }

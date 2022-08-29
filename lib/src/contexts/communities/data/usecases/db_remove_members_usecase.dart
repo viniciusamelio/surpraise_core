@@ -8,15 +8,15 @@ import 'package:surpraise_core/src/contexts/communities/domain/entities/member.d
 import 'package:surpraise_core/src/contexts/communities/domain/events/events.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/value_objects/description.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/value_objects/title.dart';
-import 'package:surpraise_core/src/core/events/event_bus.dart';
 import 'package:surpraise_core/src/core/exceptions/application_exception.dart';
+import 'package:surpraise_core/src/core/usecases/base_event_usecase.dart';
 import 'package:surpraise_core/src/core/value_objects/id.dart';
 
-class DbRemoveMembersUsecase implements RemoveMembersUsecase {
+class DbRemoveMembersUsecase extends EventEmitterUsecase
+    implements RemoveMembersUsecase {
   DbRemoveMembersUsecase({
     required RemoveMembersRepository removeMembersRepository,
     required FindCommunityRepository findCommunityRepository,
-    required this.eventBus,
   })  : _removeMembersRepository = removeMembersRepository,
         _findCommunityRepository = findCommunityRepository;
 
@@ -87,12 +87,9 @@ class DbRemoveMembersUsecase implements RemoveMembersUsecase {
     RemoveMembersInput input,
   ) {
     for (var id in input.memberIds) {
-      eventBus.addEvent(
+      notify(
         MemberRemoved(communityId: input.communityId, memberId: id),
       );
     }
   }
-
-  @override
-  final EventBus eventBus;
 }

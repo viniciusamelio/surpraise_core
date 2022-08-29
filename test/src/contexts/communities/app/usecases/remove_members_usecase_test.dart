@@ -7,7 +7,6 @@ import 'package:surpraise_core/src/contexts/communities/app/usecases/remove_memb
 import 'package:surpraise_core/src/contexts/communities/data/protocols/protocols.dart';
 import 'package:surpraise_core/src/contexts/communities/data/usecases/db_remove_members_usecase.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/entities/member.dart';
-import 'package:surpraise_core/src/core/events/stream_event_bus.dart';
 import 'package:surpraise_core/src/core/exceptions/validation_exception.dart';
 import 'package:test/test.dart';
 
@@ -24,7 +23,6 @@ void main() {
       sut = DbRemoveMembersUsecase(
         removeMembersRepository: communityRepository,
         findCommunityRepository: communityRepository,
-        eventBus: StreamEventBus(),
       );
       input = RemoveMembersInput(
         communityId: faker.guid.guid(),

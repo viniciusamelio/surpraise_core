@@ -8,7 +8,6 @@ import 'package:surpraise_core/src/contexts/communities/data/protocols/add_membe
 import 'package:surpraise_core/src/contexts/communities/data/protocols/protocols.dart';
 import 'package:surpraise_core/src/contexts/communities/data/usecases/db_add_members_usecase.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/entities/member.dart';
-import 'package:surpraise_core/src/core/events/stream_event_bus.dart';
 import 'package:surpraise_core/src/core/exceptions/exceptions.dart';
 import 'package:test/test.dart';
 
@@ -37,7 +36,6 @@ void main() {
       sut = DbAddMembersUsecase(
         addMembersRepository: communityRepository,
         findCommunityRepository: communityRepository,
-        eventBus: StreamEventBus(),
       );
     });
 

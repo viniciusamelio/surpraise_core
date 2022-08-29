@@ -8,26 +8,23 @@ import 'package:surpraise_core/src/contexts/communities/domain/entities/member.d
 import 'package:surpraise_core/src/contexts/communities/domain/events/member_added.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/value_objects/description.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/value_objects/title.dart';
-import 'package:surpraise_core/src/core/events/event_bus.dart';
 import 'package:surpraise_core/src/core/exceptions/application_exception.dart';
 import 'package:surpraise_core/src/core/exceptions/domain_exception.dart';
+import 'package:surpraise_core/src/core/usecases/base_event_usecase.dart';
 import 'package:surpraise_core/src/core/value_objects/id.dart';
 
 import '../protocols/add_members_repository.dart';
 
-class DbAddMembersUsecase implements AddMembersUsecase {
+class DbAddMembersUsecase extends EventEmitterUsecase
+    implements AddMembersUsecase {
   DbAddMembersUsecase({
     required AddMembersRepository addMembersRepository,
     required FindCommunityRepository findCommunityRepository,
-    required this.eventBus,
   })  : _addMembersRepository = addMembersRepository,
         _findCommunityRepository = findCommunityRepository;
 
   final AddMembersRepository _addMembersRepository;
   final FindCommunityRepository _findCommunityRepository;
-
-  @override
-  final EventBus eventBus;
 
   @override
   Future<Either<Exception, AddMembersOutput>> call(
@@ -97,11 +94,9 @@ class DbAddMembersUsecase implements AddMembersUsecase {
 
   void _notify(AddMembersInput input) {
     for (final member in input.members) {
-      eventBus.addEvent(
-        MemberAdded(
-          communityId: input.idCommunity,
-          memberId: member.idMember,
-        ),
+      MemberAdded(
+        communityId: input.idCommunity,
+        memberId: member.idMember,
       );
     }
   }

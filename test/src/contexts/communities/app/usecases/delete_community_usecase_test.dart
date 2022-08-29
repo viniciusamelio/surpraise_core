@@ -7,6 +7,7 @@ import 'package:surpraise_core/src/contexts/communities/app/services/delete_comm
 import 'package:surpraise_core/src/contexts/communities/app/usecases/delete_community_usecase.dart';
 import 'package:surpraise_core/src/contexts/communities/data/protocols/protocols.dart';
 import 'package:surpraise_core/src/contexts/communities/data/usecases/db_delete_community_usecase.dart';
+import 'package:surpraise_core/src/core/events/stream_event_bus.dart';
 import 'package:surpraise_core/src/core/exceptions/domain_exception.dart';
 import 'package:test/test.dart';
 
@@ -35,6 +36,7 @@ void main() {
         deleteCommunityRepository: deleteCommunityRepository,
         findCommunityRepository: findCommunityRepository,
         deleteCommunityService: DeleteCommunityService(),
+        eventBus: StreamEventBus(),
       );
 
       registerFallbackValue(

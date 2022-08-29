@@ -5,8 +5,10 @@ import 'package:surpraise_core/src/contexts/communities/app/usecases/remove_memb
 import 'package:surpraise_core/src/contexts/communities/data/protocols/protocols.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/entities/community.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/entities/member.dart';
+import 'package:surpraise_core/src/contexts/communities/domain/events/events.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/value_objects/description.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/value_objects/title.dart';
+import 'package:surpraise_core/src/core/events/event_bus.dart';
 import 'package:surpraise_core/src/core/exceptions/application_exception.dart';
 import 'package:surpraise_core/src/core/value_objects/id.dart';
 
@@ -14,6 +16,7 @@ class DbRemoveMembersUsecase implements RemoveMembersUsecase {
   DbRemoveMembersUsecase({
     required RemoveMembersRepository removeMembersRepository,
     required FindCommunityRepository findCommunityRepository,
+    required this.eventBus,
   })  : _removeMembersRepository = removeMembersRepository,
         _findCommunityRepository = findCommunityRepository;
 
@@ -69,6 +72,7 @@ class DbRemoveMembersUsecase implements RemoveMembersUsecase {
               await _removeMembersRepository.removeMembers(
             input,
           );
+          _notify(input);
           return removedMembersFeedbackOrException;
         } on Exception catch (e) {
           return left(e);
@@ -78,4 +82,17 @@ class DbRemoveMembersUsecase implements RemoveMembersUsecase {
       return left(e);
     }
   }
+
+  void _notify(
+    RemoveMembersInput input,
+  ) {
+    for (var id in input.memberIds) {
+      eventBus.addEvent(
+        MemberRemoved(communityId: input.communityId, memberId: id),
+      );
+    }
+  }
+
+  @override
+  final EventBus eventBus;
 }

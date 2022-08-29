@@ -1,9 +1,11 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/entities/community.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/entities/member.dart';
+import 'package:surpraise_core/src/contexts/communities/domain/events/events.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/services/delete_community_service.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/value_objects/description.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/value_objects/title.dart';
+import 'package:surpraise_core/src/core/events/event_bus.dart';
 import 'package:surpraise_core/src/core/value_objects/id.dart';
 
 import '../../app/boundaries/delete_community_boundaries.dart';
@@ -16,6 +18,7 @@ class DbDeleteCommunityUsecase implements DeleteCommunityUsecase {
     required DeleteCommunityRepository deleteCommunityRepository,
     required FindCommunityRepository findCommunityRepository,
     required IDeleteCommunityService deleteCommunityService,
+    required this.eventBus,
   })  : _deleteCommunityRepository = deleteCommunityRepository,
         _findCommunityRepository = findCommunityRepository,
         _deleteCommunityService = deleteCommunityService;
@@ -55,6 +58,7 @@ class DbDeleteCommunityUsecase implements DeleteCommunityUsecase {
         return serviceResponse.fold((l) => Left(l), (r) async {
           final feedbackOrError =
               await _deleteCommunityRepository.delete(input);
+          _notify(input);
           return feedbackOrError;
         });
       });
@@ -62,4 +66,15 @@ class DbDeleteCommunityUsecase implements DeleteCommunityUsecase {
       return Left(e);
     }
   }
+
+  void _notify(DeleteCommunityInput input) {
+    eventBus.addEvent(
+      CommunityDeleted(
+        communityId: input.id,
+      ),
+    );
+  }
+
+  @override
+  final EventBus eventBus;
 }

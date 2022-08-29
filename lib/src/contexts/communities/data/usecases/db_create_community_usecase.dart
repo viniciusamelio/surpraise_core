@@ -5,7 +5,9 @@ import 'package:surpraise_core/src/contexts/communities/app/usecases/create_comm
 import 'package:surpraise_core/src/contexts/communities/data/protocols/create_community_repository.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/entities/community.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/entities/member.dart';
+import 'package:surpraise_core/src/contexts/communities/domain/events/events.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/value_objects/value_objects.dart';
+import 'package:surpraise_core/src/core/events/event_bus.dart';
 import 'package:surpraise_core/src/core/protocols/services/id_service.dart';
 import 'package:surpraise_core/src/core/value_objects/id.dart';
 
@@ -13,11 +15,15 @@ class DbCreateCommunityUsecase implements CreateCommunityUsecase {
   DbCreateCommunityUsecase({
     required CreateCommunityRepository createCommunityRepository,
     required IdService idService,
+    required this.eventBus,
   })  : _idService = idService,
         _createCommunityRepository = createCommunityRepository;
 
   final CreateCommunityRepository _createCommunityRepository;
   final IdService _idService;
+
+  @override
+  EventBus eventBus;
 
   @override
   Future<Either<Exception, CreateCommunityOutput>> call(
@@ -49,10 +55,19 @@ class DbCreateCommunityUsecase implements CreateCommunityUsecase {
 
       return createdCommunityOrException.fold(
         (l) => Left(l),
-        (r) => Right(r),
+        (r) {
+          notify(r);
+          return Right(r);
+        },
       );
     } on Exception catch (e) {
       return Left(e);
     }
+  }
+
+  void notify(CreateCommunityOutput r) {
+    eventBus.addEvent(
+      CommunityCreated(r),
+    );
   }
 }

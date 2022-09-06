@@ -37,6 +37,7 @@ class DbPraiseUsecase extends EventEmitterUsecase<PraiseSent>
       );
       return usersOrError.fold((l) => Left(l), (usersDto) async {
         try {
+          input.id = await _idService.generate();
           if (usersDto.praisedDto.tag == usersDto.praiserDto.tag) {
             return Left(
               ApplicationException(message: "You cannot praise yourself"),
@@ -65,7 +66,12 @@ class DbPraiseUsecase extends EventEmitterUsecase<PraiseSent>
           );
           final praiseOrError = await _createPraiseRepository.create(input);
           notify(
-            PraiseSent(input),
+            PraiseSent(
+              praisedId: input.praisedId,
+              id: input.id,
+              commmunityId: input.commmunityId,
+              praiserId: input.praiserId,
+            ),
           );
           return praiseOrError;
         } on Exception catch (e) {

@@ -1,13 +1,18 @@
-import 'package:surpraise_core/src/contexts/praises/app/boundaries/praise_boundaries.dart';
 import 'package:surpraise_core/src/core/events/base_event.dart';
 
 class PraiseSent implements DomainEvent {
-  PraiseSent(
-    this.data,
-  );
-  final PraiseInput data;
+  PraiseSent({
+    required this.id,
+    required this.commmunityId,
+    required this.praisedId,
+    required this.praiserId,
+  });
+  final String commmunityId;
+  final String praiserId;
+  final String praisedId;
+  final String id;
 
   @override
   String get name =>
-      "User ${data.praisedId} was praised by ${data.praiserId}, from community ${data.commmunityId}";
+      "User $praisedId was praised by $praiserId, from community $commmunityId";
 }

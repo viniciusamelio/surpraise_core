@@ -32,7 +32,11 @@ class DbCreateUserUsecase extends EventEmitterUsecase
       createdUserOrError.fold(
         (l) => null,
         (r) => notify(
-          UserCreated(data: r),
+          UserCreated(
+            id: r.id,
+            tag: r.tag,
+            email: r.email,
+          ),
         ),
       );
       return createdUserOrError;

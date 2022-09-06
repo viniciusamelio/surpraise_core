@@ -1,13 +1,16 @@
-import 'package:surpraise_core/src/contexts/users/app/boundaries/create_user_boundaries.dart';
 import 'package:surpraise_core/src/core/events/base_event.dart';
 
 class UserCreated implements DomainEvent {
   UserCreated({
-    required this.data,
+    required this.email,
+    required this.id,
+    required this.tag,
   });
 
-  final CreateUserOutput data;
+  final String tag;
+  final String id;
+  final String email;
 
   @override
-  String get name => "User ${data.tag} created";
+  String get name => "User $tag created";
 }

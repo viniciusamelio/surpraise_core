@@ -54,7 +54,11 @@ class DbCreateCommunityUsecase extends EventEmitterUsecase
         (l) => Left(l),
         (r) {
           notify(
-            CommunityCreated(r),
+            CommunityCreated(
+              id: r.id,
+              ownerId: r.ownerId,
+              title: r.title,
+            ),
           );
           return Right(r);
         },

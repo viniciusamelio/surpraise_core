@@ -13,8 +13,6 @@ import 'package:surpraise_core/src/core/exceptions/domain_exception.dart';
 import 'package:surpraise_core/src/core/usecases/base_event_usecase.dart';
 import 'package:surpraise_core/src/core/value_objects/id.dart';
 
-import '../protocols/add_members_repository.dart';
-
 class DbAddMembersUsecase extends EventEmitterUsecase
     implements AddMembersUsecase {
   DbAddMembersUsecase({

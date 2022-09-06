@@ -4,7 +4,6 @@ import 'package:mocktail/mocktail.dart';
 import 'package:surpraise_core/src/contexts/communities/app/boundaries/add_members_boundaries.dart';
 import 'package:surpraise_core/src/contexts/communities/app/boundaries/find_community_boundaries.dart';
 import 'package:surpraise_core/src/contexts/communities/app/usecases/add_members_usecase.dart';
-import 'package:surpraise_core/src/contexts/communities/data/protocols/add_members_repository.dart';
 import 'package:surpraise_core/src/contexts/communities/data/protocols/protocols.dart';
 import 'package:surpraise_core/src/contexts/communities/data/usecases/db_add_members_usecase.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/entities/member.dart';

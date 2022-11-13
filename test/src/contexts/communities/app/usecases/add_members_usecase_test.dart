@@ -1,14 +1,8 @@
 import 'package:faker/faker.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
-
-import 'package:surpraise_core/src/contexts/communities/app/boundaries/add_members_boundaries.dart';
-import 'package:surpraise_core/src/contexts/communities/app/boundaries/find_community_boundaries.dart';
-import 'package:surpraise_core/src/contexts/communities/app/usecases/add_members_usecase.dart';
-import 'package:surpraise_core/src/contexts/communities/data/protocols/protocols.dart';
-import 'package:surpraise_core/src/contexts/communities/data/usecases/db_add_members_usecase.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/entities/member.dart';
-import 'package:surpraise_core/src/core/exceptions/exceptions.dart';
+import 'package:surpraise_core/surpraise_core.dart';
 import 'package:test/test.dart';
 
 class CommunityRepository extends Mock
@@ -36,6 +30,7 @@ void main() {
       sut = DbAddMembersUsecase(
         addMembersRepository: communityRepository,
         findCommunityRepository: communityRepository,
+        eventBus: StreamEventBus(),
       );
     });
 

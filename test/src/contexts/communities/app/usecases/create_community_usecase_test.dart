@@ -2,12 +2,7 @@ import 'package:faker/faker.dart';
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart'
     hide equals;
 import 'package:mocktail/mocktail.dart';
-import 'package:surpraise_core/src/contexts/communities/app/boundaries/create_community_boundaries.dart';
-import 'package:surpraise_core/src/contexts/communities/app/usecases/create_community_usecase.dart';
-import 'package:surpraise_core/src/contexts/communities/data/protocols/create_community_repository.dart';
-import 'package:surpraise_core/src/contexts/communities/data/usecases/db_create_community_usecase.dart';
-import 'package:surpraise_core/src/core/exceptions/exceptions.dart';
-import 'package:surpraise_core/src/core/protocols/services/id_service.dart';
+import 'package:surpraise_core/surpraise_core.dart';
 import 'package:test/test.dart';
 
 class MockCommunityRepository extends Mock
@@ -64,6 +59,7 @@ void main() {
       sut = DbCreateCommunityUsecase(
         createCommunityRepository: createCommunityRepository,
         idService: idService,
+        eventBus: StreamEventBus(),
       );
       registerFallbackValue(validInput);
     });

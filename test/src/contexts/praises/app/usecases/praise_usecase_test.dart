@@ -1,14 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:surpraise_core/src/contexts/praises/app/boundaries/praise_boundaries.dart';
-import 'package:surpraise_core/src/contexts/praises/app/usecases/praise_usecase.dart';
-import 'package:surpraise_core/src/contexts/praises/data/dtos/find_praise_users_dto.dart';
-import 'package:surpraise_core/src/contexts/praises/data/protocols/protocols.dart';
-import 'package:surpraise_core/src/contexts/praises/data/usecases/db_praise_usecase.dart';
-import 'package:surpraise_core/src/core/exceptions/application_exception.dart';
-import 'package:surpraise_core/src/core/exceptions/domain_exception.dart';
-import 'package:surpraise_core/src/core/protocols/services/id_service.dart';
+import 'package:surpraise_core/surpraise_core.dart';
 import 'package:test/test.dart';
 
 class MockPraiseRepository extends Mock
@@ -37,6 +30,7 @@ void main() {
         createPraiseRepository: praiseRepository,
         idService: mockIdService,
         findPraiseUsersRepository: praiseRepository,
+        eventBus: StreamEventBus(),
       );
 
       registerFallbackValue(input);

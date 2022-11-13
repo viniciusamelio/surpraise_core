@@ -17,6 +17,7 @@ class DbRemoveMembersUsecase extends EventEmitterUsecase
   DbRemoveMembersUsecase({
     required RemoveMembersRepository removeMembersRepository,
     required FindCommunityRepository findCommunityRepository,
+    required super.eventBus,
   })  : _removeMembersRepository = removeMembersRepository,
         _findCommunityRepository = findCommunityRepository;
 

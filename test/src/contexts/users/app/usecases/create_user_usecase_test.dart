@@ -1,12 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:surpraise_core/src/contexts/users/app/boundaries/create_user_boundaries.dart';
-import 'package:surpraise_core/src/contexts/users/app/usecases/create_user_usecase.dart';
-import 'package:surpraise_core/src/contexts/users/data/protocols/create_user_repository.dart';
-import 'package:surpraise_core/src/contexts/users/data/usecases/db_create_user_usecase.dart';
-import 'package:surpraise_core/src/core/exceptions/validation_exception.dart';
-import 'package:surpraise_core/src/core/protocols/services/id_service.dart';
+import 'package:surpraise_core/surpraise_core.dart';
 import 'package:test/test.dart';
 
 class MockUserRepository extends Mock implements CreateUserRepository {}
@@ -39,6 +34,7 @@ void main() {
         sut = DbCreateUserUsecase(
           createUserRepository: createUserRepository,
           idService: idService,
+          eventBus: StreamEventBus(),
         );
         registerFallbackValue(input);
         mockIdService();

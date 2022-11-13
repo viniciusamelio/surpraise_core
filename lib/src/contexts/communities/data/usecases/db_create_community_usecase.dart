@@ -16,6 +16,7 @@ class DbCreateCommunityUsecase extends EventEmitterUsecase
   DbCreateCommunityUsecase({
     required CreateCommunityRepository createCommunityRepository,
     required IdService idService,
+    required super.eventBus,
   })  : _idService = idService,
         _createCommunityRepository = createCommunityRepository;
 

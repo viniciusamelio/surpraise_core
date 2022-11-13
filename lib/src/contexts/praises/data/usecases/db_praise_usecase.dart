@@ -20,6 +20,7 @@ class DbPraiseUsecase extends EventEmitterUsecase<PraiseSent>
     required CreatePraiseRepository createPraiseRepository,
     required IdService idService,
     required FindPraiseUsersRepository findPraiseUsersRepository,
+    required super.eventBus,
   })  : _createPraiseRepository = createPraiseRepository,
         _idService = idService,
         _findPraiseUsersRepository = findPraiseUsersRepository;

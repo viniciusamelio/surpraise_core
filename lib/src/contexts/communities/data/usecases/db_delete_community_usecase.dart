@@ -19,6 +19,7 @@ class DbDeleteCommunityUsecase extends EventEmitterUsecase
     required DeleteCommunityRepository deleteCommunityRepository,
     required FindCommunityRepository findCommunityRepository,
     required IDeleteCommunityService deleteCommunityService,
+    required super.eventBus,
   })  : _deleteCommunityRepository = deleteCommunityRepository,
         _findCommunityRepository = findCommunityRepository,
         _deleteCommunityService = deleteCommunityService;

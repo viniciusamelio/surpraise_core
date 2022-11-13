@@ -18,6 +18,7 @@ class DbAddMembersUsecase extends EventEmitterUsecase
   DbAddMembersUsecase({
     required AddMembersRepository addMembersRepository,
     required FindCommunityRepository findCommunityRepository,
+    required super.eventBus,
   })  : _addMembersRepository = addMembersRepository,
         _findCommunityRepository = findCommunityRepository;
 

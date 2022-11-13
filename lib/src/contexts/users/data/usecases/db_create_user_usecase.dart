@@ -14,6 +14,7 @@ class DbCreateUserUsecase extends EventEmitterUsecase
   DbCreateUserUsecase({
     required CreateUserRepository createUserRepository,
     required IdService idService,
+    required super.eventBus,
   })  : _createUserRepository = createUserRepository,
         _idService = idService;
 

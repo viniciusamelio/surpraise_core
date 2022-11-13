@@ -10,6 +10,7 @@ class DbInactivateUserUsecase extends EventEmitterUsecase
     implements InactivateUserUsecase {
   DbInactivateUserUsecase({
     required InactivateUserRepository inactivateUserRepository,
+    required super.eventBus,
   }) : _inactivateUserRepository = inactivateUserRepository;
   final InactivateUserRepository _inactivateUserRepository;
 

@@ -1,11 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:surpraise_core/src/contexts/users/app/boundaries/inactivate_user_boundaries.dart';
-import 'package:surpraise_core/src/contexts/users/app/usecases/inactivate_user_usecase.dart';
-import 'package:surpraise_core/src/contexts/users/data/protocols/inactivate_user_repository.dart';
-import 'package:surpraise_core/src/contexts/users/data/usecases/db_inactivate_user_usecase.dart';
-import 'package:surpraise_core/src/core/exceptions/validation_exception.dart';
+import 'package:surpraise_core/surpraise_core.dart';
 import 'package:test/test.dart';
 
 class MockUserRepository extends Mock implements InactivateUserRepository {}
@@ -21,6 +17,7 @@ void main() {
     inactivateUserRepository = MockUserRepository();
     sut = DbInactivateUserUsecase(
       inactivateUserRepository: inactivateUserRepository,
+      eventBus: StreamEventBus(),
     );
     registerFallbackValue(input);
   });

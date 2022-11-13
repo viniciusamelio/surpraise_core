@@ -1,6 +1,7 @@
 name: surpraise_core
 description: A starting point for Dart libraries or applications.
 version: 1.0.0
+publish_to: none
 # homepage: https://www.example.com
 
 environment:
@@ -10,6 +11,12 @@ environment:
 #   path: ^1.8.0
 
 dev_dependencies:
+  faker: ^2.0.0
   lints: ^2.0.0
+  mocktail: ^0.3.0
   test: ^1.16.0
-dependencies: {equatable: ^2.0.3, faker: ^2.0.0, fpdart: ^0.2.0, mocktail: ^0.3.0, string_validator: ^0.3.0}
+
+dependencies:
+  surpraise_backend_dependencies:
+    git:
+      git@github.com:viniciusamelio/surpraise_backend_dependencies.git

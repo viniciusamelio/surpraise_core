@@ -1,6 +1,6 @@
 import 'package:surpraise_core/src/contexts/communities/app/boundaries/find_community_boundaries.dart';
 import 'package:surpraise_core/src/contexts/communities/app/boundaries/remove_members_boundaries.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
 import 'package:surpraise_core/src/contexts/communities/app/usecases/remove_members_usecase.dart';
 import 'package:surpraise_core/src/contexts/communities/data/protocols/protocols.dart';
 import 'package:surpraise_core/src/contexts/communities/domain/entities/community.dart';
@@ -75,11 +75,11 @@ class DbRemoveMembersUsecase extends EventEmitterUsecase
           _notify(input);
           return removedMembersFeedbackOrException;
         } on Exception catch (e) {
-          return left(e);
+          return Left(e);
         }
       });
     } on Exception catch (e) {
-      return left(e);
+      return Left(e);
     }
   }
 

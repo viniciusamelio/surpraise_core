@@ -1,5 +1,5 @@
 import 'package:surpraise_core/src/contexts/communities/app/boundaries/add_members_boundaries.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
 import 'package:surpraise_core/src/contexts/communities/app/boundaries/find_community_boundaries.dart';
 import 'package:surpraise_core/src/contexts/communities/app/usecases/add_members_usecase.dart';
 import 'package:surpraise_core/src/contexts/communities/data/protocols/protocols.dart';

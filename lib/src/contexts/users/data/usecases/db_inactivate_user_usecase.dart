@@ -1,4 +1,4 @@
-import 'package:fpdart/fpdart.dart';
+import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
 import 'package:surpraise_core/src/contexts/users/app/boundaries/inactivate_user_boundaries.dart';
 import 'package:surpraise_core/src/contexts/users/app/usecases/inactivate_user_usecase.dart';
 import 'package:surpraise_core/src/contexts/users/data/protocols/inactivate_user_repository.dart';

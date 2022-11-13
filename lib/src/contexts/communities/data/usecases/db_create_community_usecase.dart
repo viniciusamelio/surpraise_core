@@ -1,4 +1,4 @@
-import 'package:fpdart/fpdart.dart';
+import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
 
 import 'package:surpraise_core/src/contexts/communities/app/boundaries/create_community_boundaries.dart';
 import 'package:surpraise_core/src/contexts/communities/app/usecases/create_community_usecase.dart';

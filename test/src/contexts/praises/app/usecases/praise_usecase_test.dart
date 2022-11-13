@@ -1,5 +1,5 @@
 import 'package:faker/faker.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:surpraise_core/src/contexts/praises/app/boundaries/praise_boundaries.dart';
 import 'package:surpraise_core/src/contexts/praises/app/usecases/praise_usecase.dart';

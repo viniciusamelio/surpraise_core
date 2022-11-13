@@ -1,7 +1,8 @@
 import 'package:faker/faker.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart'
+    hide equals;
 import 'package:surpraise_core/src/contexts/communities/app/boundaries/delete_community_boundaries.dart';
-import 'package:fpdart/src/either.dart';
 import 'package:surpraise_core/src/contexts/communities/app/boundaries/find_community_boundaries.dart';
 import 'package:surpraise_core/src/contexts/communities/app/services/delete_community_service.dart';
 import 'package:surpraise_core/src/contexts/communities/app/usecases/delete_community_usecase.dart';

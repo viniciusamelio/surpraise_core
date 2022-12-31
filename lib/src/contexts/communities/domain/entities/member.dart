@@ -11,7 +11,7 @@ enum Role {
   final String value;
 
   factory Role.fromString(String value) =>
-      values.firstWhere((element) => element.name == value);
+      values.firstWhere((element) => element.value == value);
 }
 
 class Member implements Entity {

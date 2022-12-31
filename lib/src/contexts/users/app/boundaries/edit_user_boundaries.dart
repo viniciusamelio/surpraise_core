@@ -1,5 +1,5 @@
 class EditUserInput {
-  EditUserInput({
+  const EditUserInput({
     required this.tag,
     required this.name,
     required this.email,
@@ -11,11 +11,16 @@ class EditUserInput {
   final String id;
 }
 
-class EditUserOutput extends EditUserInput {
-  EditUserOutput({
-    required super.tag,
-    required super.name,
-    required super.email,
-    required super.id,
+class EditUserOutput {
+  const EditUserOutput({
+    required this.tag,
+    required this.name,
+    required this.email,
+    required this.id,
   });
+
+  final String tag;
+  final String name;
+  final String email;
+  final String id;
 }

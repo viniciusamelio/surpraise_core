@@ -88,7 +88,7 @@ void main() {
                 FindCommunityMemberDto(
                   id: faker.guid.guid(),
                   communityId: output.id,
-                  role: "admin",
+                  role: "owner",
                 ),
                 FindCommunityMemberDto(
                   id: faker.guid.guid(),

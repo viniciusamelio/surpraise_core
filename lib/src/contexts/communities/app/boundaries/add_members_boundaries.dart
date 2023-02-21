@@ -19,5 +19,5 @@ class MemberToAdd {
 }
 
 class AddMembersOutput {
-  String messahe = "Member added successfully";
+  String message = "Member(s) added successfully";
 }

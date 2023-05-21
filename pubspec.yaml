@@ -19,4 +19,4 @@ dev_dependencies:
 dependencies:
   surpraise_backend_dependencies:
     git:
-      git@github.com:viniciusamelio/surpraise_backend_dependencies.git
+      https://github.com/viniciusamelio/surpraise_backend_dependencies

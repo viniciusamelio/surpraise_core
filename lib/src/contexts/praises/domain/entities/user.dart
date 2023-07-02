@@ -22,8 +22,7 @@ class User implements Entity {
     required Id communityId,
     required Id id,
   }) {
-    if (!communities.contains(communityId) ||
-        !praised.communities.contains(communityId)) {
+    if (!communities.contains(communityId)) {
       throw DomainException(
         "You can only praise users that are in the same community you are",
       );

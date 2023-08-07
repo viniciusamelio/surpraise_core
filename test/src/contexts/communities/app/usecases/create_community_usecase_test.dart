@@ -36,6 +36,7 @@ void main() {
       description: faker.lorem.sentences(2).toString(),
       ownerId: faker.guid.guid(),
       title: faker.lorem.word(),
+      imageUrl: faker.lorem.word(),
     );
 
     final ownerId = faker.guid.guid();
@@ -73,6 +74,7 @@ void main() {
           description: faker.lorem.sentences(2).toString(),
           ownerId: faker.guid.guid(),
           title: faker.lorem.word(),
+          imageUrl: faker.lorem.word(),
         ),
       );
 
@@ -92,6 +94,7 @@ void main() {
           description: "",
           ownerId: faker.guid.guid(),
           title: faker.lorem.word(),
+          imageUrl: faker.lorem.word(),
         ),
       );
 

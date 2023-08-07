@@ -4,6 +4,7 @@ class CreateCommunityInput {
     required this.description,
     required this.ownerId,
     required this.title,
+    required this.imageUrl,
     this.planMemberLimit = 50,
   });
 
@@ -11,6 +12,7 @@ class CreateCommunityInput {
   String ownerId;
   String description;
   String title;
+  String imageUrl;
   int planMemberLimit;
 }
 

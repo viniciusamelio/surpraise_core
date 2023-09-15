@@ -6,4 +6,4 @@ export "./data/dtos/find_praise_users_dto.dart";
 export "./data/protocols/protocols.dart";
 export "./domain/events/praise_sent.dart";
 
-export "./domain/aggregate_root.dart";
+export "./domain/entities/user.dart";

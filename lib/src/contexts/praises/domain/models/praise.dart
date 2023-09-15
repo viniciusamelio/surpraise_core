@@ -5,7 +5,7 @@ import 'package:surpraise_core/src/core/models/domain_model.dart';
 import 'package:surpraise_core/src/core/value_objects/id.dart';
 
 class Praise implements DomainModel {
-  Praise({
+  const Praise({
     required this.id,
     required this.communityId,
     required this.praised,
@@ -15,11 +15,11 @@ class Praise implements DomainModel {
     required this.topic,
   });
 
-  Id id;
-  Id communityId;
-  User praised;
-  User praiser;
-  DateTime time;
-  Message message;
-  Topic topic;
+  final Id id;
+  final Id communityId;
+  final User praised;
+  final User praiser;
+  final DateTime time;
+  final Message message;
+  final Topic topic;
 }

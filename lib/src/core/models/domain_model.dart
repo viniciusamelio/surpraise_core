@@ -1,1 +1,3 @@
-abstract class DomainModel {}
+abstract class DomainModel {
+  const DomainModel();
+}

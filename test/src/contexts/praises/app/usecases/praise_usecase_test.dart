@@ -30,7 +30,6 @@ void main() {
         createPraiseRepository: praiseRepository,
         idService: mockIdService,
         findPraiseUsersRepository: praiseRepository,
-        eventBus: StreamEventBus(),
       );
 
       registerFallbackValue(input);

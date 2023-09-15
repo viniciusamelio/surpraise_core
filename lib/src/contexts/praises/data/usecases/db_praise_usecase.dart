@@ -2,25 +2,21 @@ import 'package:surpraise_core/src/contexts/praises/app/boundaries/praise_bounda
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
 import 'package:surpraise_core/src/contexts/praises/app/usecases/praise_usecase.dart';
 import 'package:surpraise_core/src/contexts/praises/domain/entities/user.dart';
-import 'package:surpraise_core/src/contexts/praises/domain/events/praise_sent.dart';
 import 'package:surpraise_core/src/contexts/praises/domain/value_objects/message.dart';
 import 'package:surpraise_core/src/contexts/praises/domain/value_objects/tag.dart';
 import 'package:surpraise_core/src/contexts/praises/domain/value_objects/topic.dart';
 import 'package:surpraise_core/src/core/exceptions/application_exception.dart';
 import 'package:surpraise_core/src/core/protocols/services/id_service.dart';
-import 'package:surpraise_core/src/core/usecases/base_event_usecase.dart';
 import 'package:surpraise_core/src/core/value_objects/id.dart';
 
 import '../mappers/praise_mappers.dart';
 import '../protocols/protocols.dart';
 
-class DbPraiseUsecase extends EventEmitterUsecase<PraiseSent>
-    implements PraiseUsecase {
+class DbPraiseUsecase implements PraiseUsecase {
   DbPraiseUsecase({
     required CreatePraiseRepository createPraiseRepository,
     required IdService idService,
     required FindPraiseUsersRepository findPraiseUsersRepository,
-    required super.eventBus,
   })  : _createPraiseRepository = createPraiseRepository,
         _idService = idService,
         _findPraiseUsersRepository = findPraiseUsersRepository;
@@ -66,14 +62,7 @@ class DbPraiseUsecase extends EventEmitterUsecase<PraiseSent>
             ),
           );
           final praiseOrError = await _createPraiseRepository.create(input);
-          notify(
-            PraiseSent(
-              praisedId: input.praisedId,
-              id: input.id,
-              commmunityId: input.commmunityId,
-              praiserId: input.praiserId,
-            ),
-          );
+
           return praiseOrError;
         } on Exception catch (e) {
           return Left(e);

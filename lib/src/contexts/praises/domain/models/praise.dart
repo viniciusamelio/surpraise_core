@@ -1,8 +1,8 @@
-import 'package:surpraise_core/src/contexts/praises/domain/entities/user.dart';
-import 'package:surpraise_core/src/contexts/praises/domain/value_objects/message.dart';
-import 'package:surpraise_core/src/contexts/praises/domain/value_objects/topic.dart';
-import 'package:surpraise_core/src/core/models/domain_model.dart';
-import 'package:surpraise_core/src/core/value_objects/id.dart';
+import '../../../../core/models/domain_model.dart';
+import '../../../../core/value_objects/id.dart';
+import '../entities/user.dart';
+import '../value_objects/message.dart';
+import '../value_objects/topic.dart';
 
 class Praise implements DomainModel {
   const Praise({

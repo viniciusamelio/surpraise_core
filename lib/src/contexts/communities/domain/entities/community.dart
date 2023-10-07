@@ -1,12 +1,11 @@
 // ignore_for_file: prefer_final_fields
 
-import 'package:surpraise_core/src/contexts/communities/domain/entities/member.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/value_objects/description.dart';
-import 'package:surpraise_core/src/core/entities/base_entity.dart';
-import 'package:surpraise_core/src/core/value_objects/id.dart';
-
+import '../../../../core/entities/base_entity.dart';
 import '../../../../core/exceptions/domain_exception.dart';
+import '../../../../core/value_objects/id.dart';
+import '../value_objects/description.dart';
 import '../value_objects/title.dart';
+import 'member.dart';
 
 class Community implements Entity {
   Community({

@@ -1,6 +1,7 @@
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
-import 'package:surpraise_core/src/core/exceptions/validation_exception.dart';
-import 'package:surpraise_core/src/core/value_objects/base_value_object.dart';
+
+import '../../../../core/exceptions/validation_exception.dart';
+import '../../../../core/value_objects/base_value_object.dart';
 
 class Email extends Equatable implements ValueObject<String> {
   Email(String value) {

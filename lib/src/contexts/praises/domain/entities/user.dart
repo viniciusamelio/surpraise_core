@@ -1,10 +1,10 @@
-import 'package:surpraise_core/src/contexts/praises/domain/models/praise.dart';
-import 'package:surpraise_core/src/contexts/praises/domain/value_objects/message.dart';
-import 'package:surpraise_core/src/contexts/praises/domain/value_objects/tag.dart';
-import 'package:surpraise_core/src/contexts/praises/domain/value_objects/topic.dart';
-import 'package:surpraise_core/src/core/entities/base_entity.dart';
-import 'package:surpraise_core/src/core/exceptions/exceptions.dart';
-import 'package:surpraise_core/src/core/value_objects/id.dart';
+import '../../../../core/entities/base_entity.dart';
+import '../../../../core/exceptions/exceptions.dart';
+import '../../../../core/value_objects/id.dart';
+import '../models/praise.dart';
+import '../value_objects/message.dart';
+import '../value_objects/tag.dart';
+import '../value_objects/topic.dart';
 
 class User implements Entity {
   User({

@@ -1,4 +1,4 @@
-import 'package:surpraise_core/src/core/events/base_event.dart';
+import '../../../../core/events/base_event.dart';
 
 class UserCreated implements DomainEvent {
   UserCreated({

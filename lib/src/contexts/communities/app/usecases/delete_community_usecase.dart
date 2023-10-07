@@ -1,8 +1,8 @@
 // ignore_for_file: unused_field
 
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
-import 'package:surpraise_core/src/core/events/event_bus.dart';
 
+import '../../../../core/events/event_bus.dart';
 import '../../domain/services/delete_community_service.dart';
 import '../boundaries/delete_community_boundaries.dart';
 

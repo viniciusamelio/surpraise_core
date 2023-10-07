@@ -1,17 +1,18 @@
-import 'package:surpraise_core/src/contexts/communities/app/boundaries/add_members_boundaries.dart';
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
-import 'package:surpraise_core/src/contexts/communities/app/boundaries/find_community_boundaries.dart';
-import 'package:surpraise_core/src/contexts/communities/app/usecases/add_members_usecase.dart';
-import 'package:surpraise_core/src/contexts/communities/data/protocols/protocols.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/entities/community.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/entities/member.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/events/member_added.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/value_objects/description.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/value_objects/title.dart';
-import 'package:surpraise_core/src/core/exceptions/application_exception.dart';
-import 'package:surpraise_core/src/core/exceptions/domain_exception.dart';
-import 'package:surpraise_core/src/core/usecases/base_event_usecase.dart';
-import 'package:surpraise_core/src/core/value_objects/id.dart';
+
+import '../../../../core/exceptions/application_exception.dart';
+import '../../../../core/exceptions/domain_exception.dart';
+import '../../../../core/usecases/base_event_usecase.dart';
+import '../../../../core/value_objects/id.dart';
+import '../../app/boundaries/add_members_boundaries.dart';
+import '../../app/boundaries/find_community_boundaries.dart';
+import '../../app/usecases/add_members_usecase.dart';
+import '../../domain/entities/community.dart';
+import '../../domain/entities/member.dart';
+import '../../domain/events/member_added.dart';
+import '../../domain/value_objects/description.dart';
+import '../../domain/value_objects/title.dart';
+import '../protocols/protocols.dart';
 
 class DbAddMembersUsecase extends EventEmitterUsecase
     implements AddMembersUsecase {

@@ -1,10 +1,8 @@
-import 'package:surpraise_core/src/contexts/users/app/boundaries/create_user_boundaries.dart';
-import 'package:surpraise_core/src/contexts/users/app/boundaries/edit_user_boundaries.dart';
-
-import 'package:surpraise_core/src/contexts/users/domain/value_objects/value_objects.dart';
-import 'package:surpraise_core/src/core/value_objects/id.dart';
-
+import '../../../../core/value_objects/id.dart';
 import '../../domain/entities/user.dart';
+import '../../domain/value_objects/value_objects.dart';
+import '../boundaries/create_user_boundaries.dart';
+import '../boundaries/edit_user_boundaries.dart';
 
 abstract class UserFactory {
   static User fromCreateInputDto(CreateUserInput input, String id) {

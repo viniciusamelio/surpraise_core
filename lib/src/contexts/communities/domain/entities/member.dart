@@ -1,5 +1,5 @@
-import 'package:surpraise_core/src/core/entities/base_entity.dart';
-import 'package:surpraise_core/src/core/value_objects/id.dart';
+import '../../../../core/entities/base_entity.dart';
+import '../../../../core/value_objects/id.dart';
 
 enum Role {
   member("member", 1),

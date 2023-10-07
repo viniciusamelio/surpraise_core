@@ -1,5 +1,5 @@
-import 'package:surpraise_core/src/core/events/base_event.dart';
-import 'package:surpraise_core/src/core/events/event_handler.dart';
+import 'base_event.dart';
+import 'event_handler.dart';
 
 abstract class EventBus {
   Future<void> addEvent(DomainEvent event);

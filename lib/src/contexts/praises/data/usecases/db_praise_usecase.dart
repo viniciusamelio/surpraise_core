@@ -1,14 +1,14 @@
-import 'package:surpraise_core/src/contexts/praises/app/boundaries/praise_boundaries.dart';
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
-import 'package:surpraise_core/src/contexts/praises/app/usecases/praise_usecase.dart';
-import 'package:surpraise_core/src/contexts/praises/domain/entities/user.dart';
-import 'package:surpraise_core/src/contexts/praises/domain/value_objects/message.dart';
-import 'package:surpraise_core/src/contexts/praises/domain/value_objects/tag.dart';
-import 'package:surpraise_core/src/contexts/praises/domain/value_objects/topic.dart';
-import 'package:surpraise_core/src/core/exceptions/application_exception.dart';
-import 'package:surpraise_core/src/core/protocols/services/id_service.dart';
-import 'package:surpraise_core/src/core/value_objects/id.dart';
 
+import '../../../../core/exceptions/application_exception.dart';
+import '../../../../core/protocols/services/id_service.dart';
+import '../../../../core/value_objects/id.dart';
+import '../../app/boundaries/praise_boundaries.dart';
+import '../../app/usecases/praise_usecase.dart';
+import '../../domain/entities/user.dart';
+import '../../domain/value_objects/message.dart';
+import '../../domain/value_objects/tag.dart';
+import '../../domain/value_objects/topic.dart';
 import '../mappers/praise_mappers.dart';
 import '../protocols/protocols.dart';
 

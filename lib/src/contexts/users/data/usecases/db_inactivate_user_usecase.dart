@@ -1,10 +1,11 @@
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
-import 'package:surpraise_core/src/contexts/users/app/boundaries/inactivate_user_boundaries.dart';
-import 'package:surpraise_core/src/contexts/users/app/usecases/inactivate_user_usecase.dart';
-import 'package:surpraise_core/src/contexts/users/data/protocols/inactivate_user_repository.dart';
-import 'package:surpraise_core/src/contexts/users/domain/events/events.dart';
-import 'package:surpraise_core/src/core/usecases/base_event_usecase.dart';
-import 'package:surpraise_core/src/core/value_objects/id.dart';
+
+import '../../../../core/usecases/base_event_usecase.dart';
+import '../../../../core/value_objects/id.dart';
+import '../../app/boundaries/inactivate_user_boundaries.dart';
+import '../../app/usecases/inactivate_user_usecase.dart';
+import '../../domain/events/events.dart';
+import '../protocols/inactivate_user_repository.dart';
 
 class DbInactivateUserUsecase extends EventEmitterUsecase
     implements InactivateUserUsecase {

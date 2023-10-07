@@ -1,6 +1,7 @@
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
-import 'package:surpraise_core/src/core/exceptions/exceptions.dart';
-import 'package:surpraise_core/src/core/value_objects/base_value_object.dart';
+
+import '../../../../core/exceptions/exceptions.dart';
+import '../../../../core/value_objects/base_value_object.dart';
 
 class Tag extends Equatable implements ValueObject<String> {
   Tag(String value) {

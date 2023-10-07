@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:surpraise_core/src/core/events/base_event.dart';
-import 'package:surpraise_core/src/core/events/event_bus.dart';
-import 'package:surpraise_core/src/core/events/event_handler.dart';
+import 'base_event.dart';
+import 'event_bus.dart';
+import 'event_handler.dart';
 
 class StreamEventBus implements EventBus {
   final StreamController _streamController =

@@ -1,6 +1,7 @@
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
-import 'package:surpraise_core/src/contexts/communities/app/boundaries/add_members_boundaries.dart';
-import 'package:surpraise_core/src/core/events/event_bus.dart';
+
+import '../../../../core/events/event_bus.dart';
+import '../boundaries/add_members_boundaries.dart';
 
 abstract class AddMembersUsecase {
   AddMembersUsecase({

@@ -1,5 +1,5 @@
-import 'package:surpraise_core/src/core/events/base_event.dart';
-import 'package:surpraise_core/src/core/events/event_bus.dart';
+import '../events/base_event.dart';
+import '../events/event_bus.dart';
 
 abstract class EventEmitterUsecase<T extends DomainEvent> {
   EventEmitterUsecase({

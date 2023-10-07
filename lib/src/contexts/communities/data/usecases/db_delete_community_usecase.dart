@@ -1,16 +1,16 @@
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/entities/community.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/entities/member.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/events/events.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/services/delete_community_service.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/value_objects/description.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/value_objects/title.dart';
-import 'package:surpraise_core/src/core/usecases/base_event_usecase.dart';
-import 'package:surpraise_core/src/core/value_objects/id.dart';
 
+import '../../../../core/usecases/base_event_usecase.dart';
+import '../../../../core/value_objects/id.dart';
 import '../../app/boundaries/delete_community_boundaries.dart';
 import '../../app/boundaries/find_community_boundaries.dart';
 import '../../app/usecases/delete_community_usecase.dart';
+import '../../domain/entities/community.dart';
+import '../../domain/entities/member.dart';
+import '../../domain/events/events.dart';
+import '../../domain/services/delete_community_service.dart';
+import '../../domain/value_objects/description.dart';
+import '../../domain/value_objects/title.dart';
 import '../protocols/protocols.dart';
 
 class DbDeleteCommunityUsecase extends EventEmitterUsecase

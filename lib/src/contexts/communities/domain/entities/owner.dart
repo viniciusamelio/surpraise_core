@@ -1,8 +1,7 @@
-import 'package:surpraise_core/src/contexts/communities/domain/entities/community.dart';
-import 'package:surpraise_core/src/core/entities/base_entity.dart';
-import 'package:surpraise_core/src/core/value_objects/id.dart';
-
+import '../../../../core/entities/base_entity.dart';
 import '../../../../core/exceptions/domain_exception.dart';
+import '../../../../core/value_objects/id.dart';
+import 'community.dart';
 
 class Owner implements Entity {
   Owner({

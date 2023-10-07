@@ -1,6 +1,6 @@
-import 'package:surpraise_core/src/contexts/users/domain/value_objects/value_objects.dart';
-import 'package:surpraise_core/src/core/entities/base_entity.dart';
-import 'package:surpraise_core/src/core/value_objects/id.dart';
+import '../../../../core/entities/base_entity.dart';
+import '../../../../core/value_objects/id.dart';
+import '../value_objects/value_objects.dart';
 
 class User implements Entity {
   User({

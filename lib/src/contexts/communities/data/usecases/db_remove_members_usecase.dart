@@ -1,14 +1,15 @@
+import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
+
+import '../../../../core/exceptions/application_exception.dart';
+import '../../../../core/value_objects/id.dart';
 import '../../app/boundaries/find_community_boundaries.dart';
 import '../../app/boundaries/remove_members_boundaries.dart';
-import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
 import '../../app/usecases/remove_members_usecase.dart';
-import '../protocols/protocols.dart';
 import '../../domain/entities/community.dart';
 import '../../domain/entities/member.dart';
 import '../../domain/value_objects/description.dart';
 import '../../domain/value_objects/title.dart';
-import '../../../../core/exceptions/application_exception.dart';
-import '../../../../core/value_objects/id.dart';
+import '../protocols/protocols.dart';
 
 class DbRemoveMembersUsecase implements RemoveMembersUsecase {
   DbRemoveMembersUsecase({

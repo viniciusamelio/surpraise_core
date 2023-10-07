@@ -1,6 +1,7 @@
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
-import 'package:surpraise_core/src/contexts/communities/app/boundaries/create_community_boundaries.dart';
-import 'package:surpraise_core/src/core/events/event_bus.dart';
+
+import '../../../../core/events/event_bus.dart';
+import '../boundaries/create_community_boundaries.dart';
 
 abstract class CreateCommunityUsecase {
   CreateCommunityUsecase({

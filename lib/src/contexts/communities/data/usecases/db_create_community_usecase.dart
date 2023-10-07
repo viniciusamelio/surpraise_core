@@ -1,15 +1,15 @@
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
 
-import 'package:surpraise_core/src/contexts/communities/app/boundaries/create_community_boundaries.dart';
-import 'package:surpraise_core/src/contexts/communities/app/usecases/create_community_usecase.dart';
-import 'package:surpraise_core/src/contexts/communities/data/protocols/create_community_repository.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/entities/community.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/entities/member.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/events/events.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/value_objects/value_objects.dart';
-import 'package:surpraise_core/src/core/protocols/services/id_service.dart';
-import 'package:surpraise_core/src/core/usecases/base_event_usecase.dart';
-import 'package:surpraise_core/src/core/value_objects/id.dart';
+import '../../../../core/protocols/services/id_service.dart';
+import '../../../../core/usecases/base_event_usecase.dart';
+import '../../../../core/value_objects/id.dart';
+import '../../app/boundaries/create_community_boundaries.dart';
+import '../../app/usecases/create_community_usecase.dart';
+import '../../domain/entities/community.dart';
+import '../../domain/entities/member.dart';
+import '../../domain/events/events.dart';
+import '../../domain/value_objects/value_objects.dart';
+import '../protocols/create_community_repository.dart';
 
 class DbCreateCommunityUsecase extends EventEmitterUsecase
     implements CreateCommunityUsecase {

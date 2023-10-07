@@ -2,13 +2,17 @@ import 'package:surpraise_core/src/core/entities/base_entity.dart';
 import 'package:surpraise_core/src/core/value_objects/id.dart';
 
 enum Role {
-  member("member"),
-  moderator("moderator"),
-  admin("owner");
+  member("member", 1),
+  moderator("moderator", 2),
+  admin("owner", 3);
 
-  const Role(this.value);
+  const Role(
+    this.value,
+    this.level,
+  );
 
   final String value;
+  final int level;
 
   factory Role.fromString(String value) =>
       values.firstWhere((element) => element.value == value);

@@ -45,7 +45,17 @@ class Community implements Entity {
     members.add(member);
   }
 
-  void removeMember(Id memberId) {
-    members.removeWhere((member) => member.id == memberId);
+  void removeMember({
+    required Member moderator,
+    required Member member,
+  }) {
+    if (moderator.role.level > member.role.level || ownerId == moderator.id) {
+      members.removeWhere((element) => element.id == member.id);
+      return;
+    }
+
+    throw DomainException(
+      "You do not have the needed permission to remove this member",
+    );
   }
 }

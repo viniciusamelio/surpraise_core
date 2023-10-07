@@ -1,23 +1,19 @@
-import 'package:surpraise_core/src/contexts/communities/app/boundaries/find_community_boundaries.dart';
-import 'package:surpraise_core/src/contexts/communities/app/boundaries/remove_members_boundaries.dart';
+import '../../app/boundaries/find_community_boundaries.dart';
+import '../../app/boundaries/remove_members_boundaries.dart';
 import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
-import 'package:surpraise_core/src/contexts/communities/app/usecases/remove_members_usecase.dart';
-import 'package:surpraise_core/src/contexts/communities/data/protocols/protocols.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/entities/community.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/entities/member.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/events/events.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/value_objects/description.dart';
-import 'package:surpraise_core/src/contexts/communities/domain/value_objects/title.dart';
-import 'package:surpraise_core/src/core/exceptions/application_exception.dart';
-import 'package:surpraise_core/src/core/usecases/base_event_usecase.dart';
-import 'package:surpraise_core/src/core/value_objects/id.dart';
+import '../../app/usecases/remove_members_usecase.dart';
+import '../protocols/protocols.dart';
+import '../../domain/entities/community.dart';
+import '../../domain/entities/member.dart';
+import '../../domain/value_objects/description.dart';
+import '../../domain/value_objects/title.dart';
+import '../../../../core/exceptions/application_exception.dart';
+import '../../../../core/value_objects/id.dart';
 
-class DbRemoveMembersUsecase extends EventEmitterUsecase
-    implements RemoveMembersUsecase {
+class DbRemoveMembersUsecase implements RemoveMembersUsecase {
   DbRemoveMembersUsecase({
     required RemoveMembersRepository removeMembersRepository,
     required FindCommunityRepository findCommunityRepository,
-    required super.eventBus,
   })  : _removeMembersRepository = removeMembersRepository,
         _findCommunityRepository = findCommunityRepository;
 
@@ -29,10 +25,11 @@ class DbRemoveMembersUsecase extends EventEmitterUsecase
     RemoveMembersInput input,
   ) async {
     try {
-      if (input.memberIds.isEmpty) {
+      if (input.members.isEmpty) {
         return Left(
           ApplicationException(
-              message: "Can't remove an empty member list from a community"),
+            message: "Can't remove an empty member list from a community",
+          ),
         );
       }
       final foundCommunityOrException = await _findCommunityRepository.find(
@@ -40,12 +37,16 @@ class DbRemoveMembersUsecase extends EventEmitterUsecase
       );
       return foundCommunityOrException.fold((l) => Left(l), (r) async {
         try {
-          final List<Id> memberIds = [];
-          memberIds.addAll(
-            input.memberIds
-                .map<Id>(
-                  (e) => Id(
-                    e,
+          final List<Member> members = [];
+          members.addAll(
+            input.members
+                .map<Member>(
+                  (e) => Member(
+                    id: Id(
+                      e.id,
+                    ),
+                    communityId: Id(input.communityId),
+                    role: e.role,
                   ),
                 )
                 .toList(),
@@ -65,15 +66,27 @@ class DbRemoveMembersUsecase extends EventEmitterUsecase
                 )
                 .toList(),
           );
-          for (final id in memberIds) {
-            community.removeMember(id);
+          final mod = Member(
+            id: Id(input.moderator.id),
+            communityId: Id(input.communityId),
+            role: input.moderator.role,
+          );
+
+          for (final member in members) {
+            community.removeMember(
+              moderator: mod,
+              member: Member(
+                id: member.id,
+                communityId: member.communityId,
+                role: member.role,
+              ),
+            );
           }
 
           final removedMembersFeedbackOrException =
               await _removeMembersRepository.removeMembers(
             input,
           );
-          _notify(input);
           return removedMembersFeedbackOrException;
         } on Exception catch (e) {
           return Left(e);
@@ -81,16 +94,6 @@ class DbRemoveMembersUsecase extends EventEmitterUsecase
       });
     } on Exception catch (e) {
       return Left(e);
-    }
-  }
-
-  void _notify(
-    RemoveMembersInput input,
-  ) {
-    for (var id in input.memberIds) {
-      notify(
-        MemberRemoved(communityId: input.communityId, memberId: id),
-      );
     }
   }
 }

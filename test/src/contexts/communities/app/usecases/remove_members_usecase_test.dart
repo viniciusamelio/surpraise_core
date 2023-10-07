@@ -18,14 +18,27 @@ void main() {
       sut = DbRemoveMembersUsecase(
         removeMembersRepository: communityRepository,
         findCommunityRepository: communityRepository,
-        eventBus: StreamEventBus(),
       );
       input = RemoveMembersInput(
         communityId: faker.guid.guid(),
-        memberIds: [
-          faker.guid.guid(),
-          faker.guid.guid(),
-          faker.guid.guid(),
+        moderator: MemberDto(
+          id: faker.guid.guid(),
+          role: Role.admin,
+        ),
+        reason: "Because i wanted",
+        members: [
+          MemberDto(
+            id: faker.guid.guid(),
+            role: Role.member,
+          ),
+          MemberDto(
+            id: faker.guid.guid(),
+            role: Role.member,
+          ),
+          MemberDto(
+            id: faker.guid.guid(),
+            role: Role.member,
+          ),
         ],
       );
       registerFallbackValue(input);
@@ -57,7 +70,12 @@ void main() {
       final result = await sut(
         RemoveMembersInput(
           communityId: faker.guid.guid(),
-          memberIds: [],
+          moderator: MemberDto(
+            id: faker.guid.guid(),
+            role: Role.admin,
+          ),
+          reason: "Because i wanted",
+          members: [],
         ),
       );
 
@@ -107,7 +125,7 @@ void main() {
                 id: faker.guid.guid(),
                 communityId: faker.guid.guid(),
                 role: Role.member.name,
-              )
+              ),
             ],
             description: faker.lorem.words(3).toString(),
             title: faker.lorem.word(),
@@ -126,7 +144,7 @@ void main() {
     });
 
     // Always let this at the end of the file
-    test("Should return left when giving invalid ids as param", () async {
+    test("Should return left when giving empty list as param", () async {
       mockFindCommunity(
         Right(
           FindCommunityOutput(
@@ -138,13 +156,12 @@ void main() {
           ),
         ),
       );
-      input.memberIds.clear();
-      input.memberIds.add("");
+      input.members.clear();
 
       final result = await sut(input);
 
       expect(result.isLeft(), isTrue);
-      expect(result.fold((l) => l, (r) => null), isA<ValidationException>());
+      expect(result.fold((l) => l, (r) => null), isA<ApplicationException>());
     });
   });
 }

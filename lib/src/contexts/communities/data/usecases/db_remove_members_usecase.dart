@@ -47,7 +47,7 @@ class DbRemoveMembersUsecase implements RemoveMembersUsecase {
                       e.id,
                     ),
                     communityId: Id(input.communityId),
-                    role: e.role,
+                    role: Role.fromString(e.role),
                   ),
                 )
                 .toList(),
@@ -70,7 +70,7 @@ class DbRemoveMembersUsecase implements RemoveMembersUsecase {
           final mod = Member(
             id: Id(input.moderator.id),
             communityId: Id(input.communityId),
-            role: input.moderator.role,
+            role: Role.fromString(input.moderator.role),
           );
 
           for (final member in members) {

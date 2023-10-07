@@ -23,21 +23,21 @@ void main() {
         communityId: faker.guid.guid(),
         moderator: MemberDto(
           id: faker.guid.guid(),
-          role: Role.admin,
+          role: Role.admin.value,
         ),
         reason: "Because i wanted",
         members: [
           MemberDto(
             id: faker.guid.guid(),
-            role: Role.member,
+            role: Role.member.value,
           ),
           MemberDto(
             id: faker.guid.guid(),
-            role: Role.member,
+            role: Role.member.value,
           ),
           MemberDto(
             id: faker.guid.guid(),
-            role: Role.member,
+            role: Role.member.value,
           ),
         ],
       );
@@ -72,7 +72,7 @@ void main() {
           communityId: faker.guid.guid(),
           moderator: MemberDto(
             id: faker.guid.guid(),
-            role: Role.admin,
+            role: Role.admin.value,
           ),
           reason: "Because i wanted",
           members: [],

@@ -1,5 +1,3 @@
-import '../../domain/entities/entities.dart';
-
 class RemoveMembersInput {
   RemoveMembersInput({
     required this.communityId,
@@ -20,7 +18,7 @@ class MemberDto {
     required this.role,
   });
   final String id;
-  final Role role;
+  final String role;
 }
 
 class RemoveMembersOutput {

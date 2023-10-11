@@ -1,4 +1,6 @@
-class LeaveCommunityInput {
+import 'package:surpraise_backend_dependencies/surpraise_backend_dependencies.dart';
+
+class LeaveCommunityInput extends Equatable {
   const LeaveCommunityInput({
     required this.memberId,
     required this.communityId,
@@ -7,6 +9,9 @@ class LeaveCommunityInput {
   final String memberId;
   final String communityId;
   final String memberRole;
+
+  @override
+  List<Object?> get props => [memberId, communityId, memberRole];
 }
 
 class LeaveCommunityOutput {

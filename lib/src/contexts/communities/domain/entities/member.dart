@@ -1,3 +1,4 @@
+import '../../../../core/core.dart';
 import '../../../../core/entities/base_entity.dart';
 import '../../../../core/value_objects/id.dart';
 
@@ -19,7 +20,7 @@ enum Role {
 }
 
 class Member implements Entity {
-  Member({
+  const Member({
     required this.id,
     required this.communityId,
     required this.role,
@@ -28,4 +29,15 @@ class Member implements Entity {
   final Id id;
   final Id communityId;
   final Role role;
+
+  void leaveCommunity({
+    required int communityMembersCount,
+    required String ownerId,
+  }) {
+    if (id.value == ownerId && communityMembersCount > 1) {
+      throw DomainException(
+        "This member need to be the last one to leave this community",
+      );
+    }
+  }
 }

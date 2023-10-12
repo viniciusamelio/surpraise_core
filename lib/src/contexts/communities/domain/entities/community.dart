@@ -14,6 +14,7 @@ class Community implements Entity {
     required this.description,
     required this.title,
     required this.members,
+    this.invitedMembers = const [],
   })  : _ownerId = ownerId,
         _id = id;
 
@@ -22,9 +23,25 @@ class Community implements Entity {
   Title title;
   Description description;
   final List<Member> members;
+  final List<Member> invitedMembers;
 
   Id get ownerId => _ownerId;
   Id get id => _id;
+
+  void invite(Member member) {
+    final currentMember =
+        members.where((element) => element.id == member.id).singleOrNull;
+    if (currentMember != null && member.role == currentMember.role) {
+      throw DomainException(
+        "This member is already a community member and has this same role",
+      );
+    } else if (invitedMembers
+        .where((element) => element.id == member.id)
+        .isNotEmpty) {
+      throw DomainException("Member was already invited");
+    }
+    invitedMembers.add(member);
+  }
 
   void changeOwner(Id newOwnerId) {
     if (ownerId == newOwnerId) {

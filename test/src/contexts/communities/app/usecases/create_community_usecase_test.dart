@@ -60,7 +60,6 @@ void main() {
       sut = DbCreateCommunityUsecase(
         createCommunityRepository: createCommunityRepository,
         idService: idService,
-        eventBus: StreamEventBus(),
       );
       registerFallbackValue(validInput);
     });

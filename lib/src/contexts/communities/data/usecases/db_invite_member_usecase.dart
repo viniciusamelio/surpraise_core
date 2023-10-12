@@ -69,10 +69,20 @@ class DbInviteMemberUsecase implements InviteMemberUsecase {
         role: Role.fromString(input.role),
         status: InviteStatus.pending,
       );
-
+      final inviter = community.members.where(
+        (element) =>
+            element.id ==
+            Id(
+              input.inviterId,
+            ),
+      );
+      if (inviter.isEmpty) {
+        throw DomainException("Inviter not found");
+      }
       final inviteAggregate = InviteAggregate(
         community: community,
         invite: invite,
+        inviter: inviter.first,
       );
 
       inviteAggregate.invite(

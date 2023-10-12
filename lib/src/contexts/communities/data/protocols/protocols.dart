@@ -4,3 +4,4 @@ export "./find_community_repository.dart";
 export "./remove_members_repository.dart";
 export "./add_members_repository.dart";
 export "./leave_community_repository.dart";
+export "./update_community_repository.dart";

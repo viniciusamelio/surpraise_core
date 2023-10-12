@@ -16,7 +16,7 @@ class InviteAggregate {
   void invite({
     required Member member,
   }) {
-    if (_inviter.role.level < member.role.level &&
+    if (_inviter.role.level <= member.role.level &&
         (_community.ownerId != _inviter.id)) {
       throw DomainException(
         "You do not have the needed permission to invite this member",

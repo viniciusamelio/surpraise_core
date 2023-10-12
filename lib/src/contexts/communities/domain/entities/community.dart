@@ -39,6 +39,11 @@ class Community implements Entity {
         .where((element) => element.id == member.id)
         .isNotEmpty) {
       throw DomainException("Member was already invited");
+    } else if (currentMember != null &&
+        member.role.level < currentMember.role.level) {
+      throw DomainException(
+        "You can't invite a member with a lower role than he/she already has",
+      );
     }
     invitedMembers.add(member);
   }

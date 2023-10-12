@@ -242,6 +242,87 @@ void main() {
     );
 
     test(
+      "Sut should return left when inviter has the same role as invited",
+      () async {
+        final communityId = faker.guid.guid();
+        final memberId = faker.guid.guid();
+
+        final response = await sut(
+          InviteMemberInput(
+            communityId: communityId,
+            memberId: memberId,
+            role: "moderator",
+            inviterId: inviterId,
+          ),
+        );
+
+        expect(response.isLeft(), isTrue);
+      },
+    );
+
+    test(
+      "Sut should return left when invited has a greater role than inviter",
+      () async {
+        final communityId = faker.guid.guid();
+        final memberId = faker.guid.guid();
+
+        final response = await sut(
+          InviteMemberInput(
+            communityId: communityId,
+            memberId: memberId,
+            role: "owner",
+            inviterId: inviterId,
+          ),
+        );
+
+        expect(response.isLeft(), isTrue);
+      },
+    );
+
+    test(
+      "Sut should return left when re-inviting someone high a lower role",
+      () async {
+        final communityId = faker.guid.guid();
+        final memberId = faker.guid.guid();
+        when(
+          () => findCommunityRepository.find(any()),
+        ).thenAnswer(
+          (invocation) async => Right(
+            FindCommunityOutput(
+              id: communityId,
+              ownerId: inviterId,
+              description: faker.lorem.words(3).join(" "),
+              title: faker.lorem.sentence(),
+              members: [
+                FindCommunityMemberDto(
+                  id: inviterId,
+                  communityId: communityId,
+                  role: "owner",
+                ),
+                FindCommunityMemberDto(
+                  id: memberId,
+                  communityId: communityId,
+                  role: "moderator",
+                ),
+              ],
+            ),
+          ),
+        );
+
+        final response = await sut(
+          InviteMemberInput(
+            communityId: communityId,
+            memberId: memberId,
+            role: "member",
+            inviterId: inviterId,
+          ),
+        );
+
+        expect(response.isLeft(), isTrue);
+      },
+    );
+
+    test(
       "Sut should return right when inviter is community owner and invited member is invited as owner too",
       () async {
         final communityId = faker.guid.guid();

@@ -7,10 +7,8 @@ class InviteAggregate {
     required Invite invite,
     required Member inviter,
   })  : _community = community,
-        _inviter = inviter,
-        _invite = invite;
+        _inviter = inviter;
   final Community _community;
-  final Invite _invite;
   final Member _inviter;
 
   void invite({
@@ -23,13 +21,5 @@ class InviteAggregate {
       );
     }
     _community.invite(member);
-  }
-
-  void answerInvite({required bool accept}) {
-    if (accept) {
-      _invite.accept();
-      return;
-    }
-    _invite.refuse();
   }
 }

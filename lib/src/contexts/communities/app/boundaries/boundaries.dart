@@ -6,3 +6,4 @@ export "./remove_members_boundaries.dart";
 export "./leave_community_boundaries.dart";
 export "./update_community_boundaries.dart";
 export "./invite_member_boundaries.dart";
+export "./answer_invite_boundaries.dart";

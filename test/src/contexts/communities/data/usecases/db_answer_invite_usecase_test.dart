@@ -28,6 +28,7 @@ void main() {
             communityId: faker.guid.guid(),
             status: "accepted",
             role: "member",
+            memberId: faker.guid.guid(),
           ),
         ),
       );
@@ -67,6 +68,7 @@ void main() {
               communityId: faker.guid.guid(),
               status: "pending",
               role: "member",
+              memberId: faker.guid.guid(),
             ),
           ),
         );

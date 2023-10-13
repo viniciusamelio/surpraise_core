@@ -18,9 +18,11 @@ class FindInviteOutput {
     required this.communityId,
     required this.status,
     required this.role,
+    required this.memberId,
   });
   final String id;
   final String communityId;
   final String status;
   final String role;
+  final String memberId;
 }

@@ -16,5 +16,7 @@ class PraiseInput {
 }
 
 class PraiseOutput {
+  const PraiseOutput([this.praiseData]);
   final String message = "Praise sent successfully";
+  final Map<String, dynamic>? praiseData;
 }

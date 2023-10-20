@@ -6,6 +6,12 @@ import '../../../../core/value_objects/base_value_object.dart';
 enum TopicValues {
   tech("#tech"),
   kindness("#kindness"),
+  thanks("#thanks"),
+  recognition("#recognition"),
+  randomness("#randomness"),
+  partnership("#partnership"),
+  motivational("#motivational"),
+  surprise("#surprise"),
   finance("#finance");
 
   const TopicValues(this.value);

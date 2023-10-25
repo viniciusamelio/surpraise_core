@@ -5,6 +5,7 @@ class PraiseInput {
     required this.praisedId,
     required this.praiserId,
     required this.topic,
+    this.private = false,
   });
 
   final String commmunityId;
@@ -12,6 +13,7 @@ class PraiseInput {
   final String praisedId;
   final String topic;
   final String message;
+  final bool private;
   late String id;
 }
 

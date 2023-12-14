@@ -11,9 +11,9 @@ class Message extends Equatable implements ValueObject<String> {
   late final String _value;
 
   void _validate(String value) {
-    if (value.length > 280) {
+    if (value.length > 800) {
       throw ValidationException(
-        "Praise message should not contain more than 280 characters",
+        "Praise message should not contain more than 800 characters",
       );
     } else if (value.isEmpty) {
       throw ValidationException(

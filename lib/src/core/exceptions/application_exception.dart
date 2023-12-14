@@ -6,4 +6,9 @@ class ApplicationException implements Exception {
 
   final String message;
   final dynamic stackTrace;
+
+  @override
+  String toString() {
+    return message;
+  }
 }

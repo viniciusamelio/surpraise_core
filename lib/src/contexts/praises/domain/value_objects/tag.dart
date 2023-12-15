@@ -19,9 +19,9 @@ class Tag extends Equatable implements ValueObject<String> {
       throw ValidationException(
         "Invalid tag, tags must contains at least 4 characters",
       );
-    } else if (value.length > 12) {
+    } else if (value.length > 30) {
       throw ValidationException(
-        "Invalid tag, tags must not contains more than 20 characters",
+        "Invalid tag, tags must not contains more than 30 characters",
       );
     }
   }

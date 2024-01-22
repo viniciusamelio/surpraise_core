@@ -6,6 +6,7 @@ class PraiseInput {
     required this.praiserId,
     required this.topic,
     this.private = false,
+    this.extraPraisedIds = const [],
   });
 
   final String commmunityId;
@@ -14,6 +15,7 @@ class PraiseInput {
   final String topic;
   final String message;
   final bool private;
+  final List<String> extraPraisedIds;
   late String id;
 }
 
